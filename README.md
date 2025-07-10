@@ -1,19 +1,20 @@
->> Overview
+AMBA APB Protocol in Verilog
+Overview
 The Advanced Peripheral Bus (APB) is part of the AMBA (Advanced Microcontroller Bus Architecture) family designed by ARM. APB is a low-power, low-complexity, and high-performance bus protocol mainly used to connect simple peripheral devices like UARTs, timers, or GPIOs in a microcontroller-based system.
 
 Key features of the APB protocol:
 
-Simple and low-latency interface
+Simple and low-latency interface.
 
-Designed for low-bandwidth communication
+Designed for low-bandwidth communication.
 
-Uses a 3-phase transfer: IDLE → SETUP → ACCESS
+Uses a 3-phase transfer: IDLE → SETUP → ACCESS.
 
-Does not support pipelining, making it suitable for control-oriented interfaces
+Does not support pipelining, making it suitable for control-oriented interfaces.
 
-Works with signals like PADDR, PWDATA, PWRITE, PSEL, PENABLE, PRDATA, PREADY, and PSLVERR
+Works with signals like PADDR, PWDATA, PWRITE, PSEL, PENABLE, PRDATA, PREADY, and PSLVERR.
 
->> Project Description
+Project Description
 This repository provides a Verilog implementation of the APB protocol including:
 
 A 3-state finite state machine (IDLE, SETUP, ACCESS) modeling APB master logic.
@@ -26,34 +27,35 @@ Error handling for out-of-bound addresses (PSLVERR).
 
 A busy signal to track access phase activity.
 
->> Testbench Description
+Testbench Description
 The testbench APB_Test performs:
 
-Clock generation with a 10ns period
+Clock generation with a 10ns period.
 
-Proper reset initialization
+Proper reset initialization.
 
-Defined APB read/write tasks (apb_write, apb_read) to simulate real transactions
+Defined APB read/write tasks (apb_write, apb_read) to simulate real transactions.
 
 Sample test cases:
 
-Write and read from valid addresses (e.g., 0x01, 0x10)
+Write and read from valid addresses (e.g., 0x01, 0x10).
 
-Read from an invalid address (0x20) to trigger an error (PSLVERR)
+Read from an invalid address (0x20) to trigger an error (PSLVERR).
 
-Waveform dump using $dumpfile and $dumpvars for analysis in GTKWave
+Waveform dump using $dumpfile and $dumpvars for analysis in GTKWave.
 
->> Files Included
-apb.v – Main APB Verilog module (slave-side behavior and FSM logic)
+Files Included
+apb.v – Main APB Verilog module (slave-side behavior and FSM logic).
 
-testbench.v – Testbench to simulate and validate APB functionality
+testbench.v – Testbench to simulate and validate APB functionality.
 
-apb_test.vcd – Waveform dump file for GTKWave (generated after simulation)
+apb_test.vcd – Waveform dump file for GTKWave (generated after simulation).
 
->> How to Run
+How to Run
 Copy both apb.v and testbench.v into your simulator (e.g., EDA Playground, ModelSim, or Icarus Verilog).
 
 Compile and run the testbench.
 
 Open apb_test.vcd in GTKWave to visualize signal transitions and verify correctness.
+
 
